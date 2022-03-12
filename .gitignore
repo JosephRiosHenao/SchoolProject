@@ -1,0 +1,13 @@
+*.pyc
+*__pycache__
+ax_one/*/migrations/*
+!ax_one/*/migrations/__init__.py
+secrets.json
+secrets_servidor.json
+ax_one/media/*
+!ax_one/media/tmp
+!ax_one/media/iconos
+ax_one/media/tmp/*
+!ax_one/media/tmp/init.txt
+.idea/
+*.bash
