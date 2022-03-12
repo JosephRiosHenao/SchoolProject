@@ -1,0 +1,49 @@
+@import url("fonts/Lucidity/style.css");
+@import url("fonts/Baseet/style.css");
+
+
+.btn-custom {
+    width: 50%;    
+    height: 5rem;
+    background-color: red;
+    border-radius: 2rem;
+    font-size: 1.6rem;
+    font-weight: bolder;
+}
+
+.btn-register {
+    background-color: #d9d9d9;
+    color: #192a76;
+    border: 5px solid #192a76;
+    box-shadow: 10px 10px 0px #192a76;
+}
+
+.btn-login {
+    background-color: #192a76;
+    color: white;
+    border: 5px solid #192a76;
+    box-shadow: 10px 10px 0px #d9d9d9;
+}
+
+.title {
+    font-size:5rem;
+    font-weight: 500;
+    color: black;
+    border-bottom: 3px solid black;
+    font-family: 'Lucidity';
+}
+
+
+.sub-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 5rem;
+    font-family: "Baseet";
+}
+
+.text-stroke {
+    -webkit-text-stroke-color: #000;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke: 2px #000;
+    -webkit-text-fill-color: #fff;
+}

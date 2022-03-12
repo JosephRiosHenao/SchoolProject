@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Baseet';
+    src: local('29LTBaseet-Medium'), local('29LTBaseet-Medium'),
+        url('29LTBaseet-Medium.otf') format('oft'),
+        url('29LTBaseet-Medium.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BaseetBlack';
+    src: local('29LTBaseet-Black'), local('29LTBaseet-Black'),
+        url('29LTBaseet-Black.otf') format('oft'),
+        url('29LTBaseet-Black.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
