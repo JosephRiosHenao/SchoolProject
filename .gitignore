@@ -11,3 +11,4 @@ apps/media/tmp/*
 !apps/media/tmp/init.txt
 .idea/
 *.bash
+.vscode
