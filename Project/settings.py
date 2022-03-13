@@ -11,31 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import environ
-import json
 import os
-from sys import platform
-from datetime import datetime, date
 
-ROOT_DIR = environ.Path(__file__) - 3
-APPS_DIR = ROOT_DIR.path('apps')
-with open(ROOT_DIR("secrets.json")) as f:
-    secrets = json.loads(f.read())
-
-
-def get_secret(setting, secrets=secrets):
-    """Get the secret variable or return explicit exception."""
-    try:
-        return secrets[setting]
-    except KeyError:
-        error_msg = "Definir la variable de ambiente {0}".format(setting)
-        raise ImproperlyConfigured(error_msg)
-
-DEV = get_secret("DEV")
-ALLOWED_HOSTS = get_secret("ALLOWED_HOSTS")
-INTERNAL_IPS = ['127.0.0.1', '10.0.2.2']
-
-# ---- CONFIG GENERAL
+# ---- GENERAL SETTINGS
 LANGUAGE_CODE = 'es'
 SITE_ID = 1
 TIME_ZONE = 'America/Bogota'
@@ -43,7 +21,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -51,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-f=dixt@(0bqy1dpsrn78c)sd*lzv8z)4@*^lb(7pjt7me&3+7_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -68,6 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.home',
+    'apps.register',
+    'apps.login',
 ]
 
 MIDDLEWARE = [
@@ -82,10 +62,18 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Project.urls'
 
+# STATIC
+STATIC_ROOT = str(('static_collected'))
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static'),
+]
+MEDIA_URL = '/media/'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

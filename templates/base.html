@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %} | JESSCOUNT</title>
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="{% static 'css/lib/bootstrap.min.css' %}">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/custom/app.css' %}">
+    {% block css %}{% endblock css %}
+</head>
+<body>
+    {% include "navbar.html" %}
+    {% block content %}{% endblock content %}
+    <script src="{% static 'js/lib/jquery.slim.min.js' %}"></script>
+    <script src="{% static 'js/lib/bootstrap.bundle.min.js' %}"></script>
+    {% block js %}{% endblock js %}
+</body>
+</html>

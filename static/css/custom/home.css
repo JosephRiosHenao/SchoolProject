@@ -1,0 +1,25 @@
+.btn-custom {
+    width: 50%;    
+    padding: 0 4rem;    
+    height: 5rem;
+    background-color: red;
+    border-radius: 2rem;
+    font-size: 1.6rem;
+    font-weight: bolder;
+}
+
+.btn-register {
+    background-color: #d9d9d9;
+    color: #192a76;
+    border: 5px solid #192a76;
+    box-shadow: 10px 10px 0px #192a76;
+}
+
+.btn-login {
+    background-color: #192a76;
+    color: white;
+    border: 5px solid #192a76;
+    box-shadow: 10px 10px 0px #d9d9d9;
+}
+
+
