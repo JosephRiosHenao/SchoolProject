@@ -5,7 +5,6 @@ from django.views.generic import TemplateView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-
 # Create your views here.
 
 class Home(LoginRequiredMixin, TemplateView): 
@@ -15,3 +14,6 @@ class Home(LoginRequiredMixin, TemplateView):
 
 class Login(TemplateView): 
     template_name = "bases/login.html"
+
+class Register(TemplateView):
+    template_name = "bases/register.html"

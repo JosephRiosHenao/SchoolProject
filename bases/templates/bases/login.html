@@ -30,19 +30,7 @@
                                 </div>
                                 <small class="text-danger">
                                     {% if form.errors %}
-                                      {% for field in form %}
-                                        {% if field.errors %}
-                                          {% for error in field.errors %}
-                                            {{ error | escape }}
-                                          {% endfor %}
-                                        {% endif %}
-                                      {% endfor %}
-                                      
-                                      {% if form.non_field_errors %}
-                                        {% for error in  form.non_field_errors %}
-                                            {{ error | escape }}
-                                        {% endfor %}
-                                      {% endif %}
+
                                     {% endif %}
                                 </small>
                                 <form class="user" method="POST">
@@ -62,16 +50,20 @@
                                         {% endfor %}
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Login
+                                        Iniciar Sesión
                                     </button>
-
+                                    {% if form.non_field_errors %}
+                                        {% for error in  form.non_field_errors %}
+                                            {{ error | escape }}
+                                        {% endfor %}
+                                    {% endif %}
                                 </form>
                                 <hr>
                                 <div class="text-center">
                                     <a class="small" href="forgot-password.html">Se te olvido tu Contraseña?</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="register.html">Crea una Cuenta!</a>
+                                    <a class="small" href="{% url 'bases:register' %}">Crea una Cuenta!</a>
                                 </div>
                             </div>
                         </div>

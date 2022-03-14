@@ -21,9 +21,10 @@
     <!-- Custom styles for this template-->
     <link href=" {% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
+    <link href=" {% static 'app.css' %}" rel="stylesheet">
 </head>
 
-<body id="page-top" class="{% if 'login' in request.path or 'logout' in request.path %}bg-gradient-primary{% endif %}">
+<body id="page-top" class="{% if 'login' in request.path or 'logout' in request.path or 'register' in request.path %}bg-gradient-primary{% endif %}">
     <!-- Page Wrapper -->
     <div id="wrapper">
         {% block sidebar %}
