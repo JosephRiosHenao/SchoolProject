@@ -1,9 +1,9 @@
 from django.db import models
 
-from bases.models import ModelBase
+from app.models import MetaInfoBase
 
 # Create your models here.
-class Category(ModelBase):
+class Category(MetaInfoBase):
     descripcion = models.CharField(max_length=100)
 
     def __str__(self):

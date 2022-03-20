@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}INICIAR SESION{% endblock title %}
+
+{% block sidebar %}{% endblock sidebar %}
+
+{% block topbar %}{% endblock topbar %}
+
+{% block footer %}{% endblock footer %}
+
+{% block content %}{% endblock content %}
+
+{% block login %}
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center align-items-center vh-100">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
+                                </div>
+                                <small class="text-danger">
+                                    {% if form.errors %}
+
+                                    {% endif %}
+                                </small>
+                                <form class="user" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user"
+                                            id="id_username" placeholder="Usuario" name="username">
+                                        {% for error in form.username.errors %}
+                                            {{ error | escape }}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="id_password" placeholder="Contraseña" name="password">
+                                        {% for error in form.password.errors %}
+                                            {{ error | escape }}
+                                        {% endfor %}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Iniciar Sesión
+                                    </button>
+                                    {% if form.non_field_errors %}
+                                        {% for error in  form.non_field_errors %}
+                                            {{ error | escape }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="forgot-password.html">Se te olvido tu Contraseña?</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small" href="{% url 'users:register' %}">Crea una Cuenta!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock login %}
