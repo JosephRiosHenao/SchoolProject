@@ -27,14 +27,14 @@
                                 <form class="user" method="post" action="{% url 'users:register' %}">
                                     {% csrf_token %}
 
-                                    {{ error | escape }}
+                                        
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="id_username" name="username"
                                             placeholder="Usuario">
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" class="form-control form-control-user" id="id_name" name="name"
+                                            <input type="text" class="form-control form-control-user" id="id_first_name" name="first_name"
                                                 placeholder="Nombre">
                                         </div>
                                         <div class="col-sm-6">
@@ -64,7 +64,7 @@
                                     <button  type="submit" class="btn btn-primary btn-user btn-block">
                                         Registrar Cuenta
                                     </button>
-                                </form>
+                                    </form>
                                 <hr>
                                 <div class="text-center">
                                     <a class="small" href="forgot-password.html">Se te olvido tu Contraseña?</a>
