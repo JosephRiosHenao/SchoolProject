@@ -20,6 +20,9 @@ class Profile(models.Model):
     organization = models.CharField(max_length=100, blank=True)
     location = models.CharField(max_length=100, blank=True)
     website = models.URLField(blank=True)
+    twitter = models.CharField(max_length=100, blank=True)
+    facebook = models.CharField(max_length=100, blank=True)
+    instagram = models.CharField(max_length=100, blank=True)
     gender = models.CharField(max_length=15 , choices=GENDERS, blank=True, default='No binario')
     
     def __str__(self):
