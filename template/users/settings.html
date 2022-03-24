@@ -6,8 +6,9 @@
 
 
 <div class="container">
+  <form action="{% url 'users:settings' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="main-body">
-    
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
               <div class="card shadow">
@@ -19,7 +20,8 @@
                       <h4>{{ request.user.get_full_name }}</h4>
                       <p class="text-secondary mb-1">{{ request.user.profile.organization }}</p>
                       <p class="text-muted font-size-sm">{{ request.user.profile.location }}</p>
-                      <button class="btn btn-outline-primary">Editar</button>
+                      <input type="file" name="picture" accept="image/*" id="id_picture">
+                      <button type="submit" class="btn btn-outline-primary">Editar</button>
                     </div>
                   </div>
                 </div>
@@ -109,8 +111,8 @@
                       </div>
                       <div class="col-sm-10 text-secondary">
                           <textarea name="bio" id="id_bio" cols="22" rows="3" maxlength="500" 
-                          class="form-control{% if form.bio.errors %}is-invalid{% endif %}" 
-                          value="{% if form.errors %}{{ form.bio.value }}{% else %}{{ request.user.profile.bio }}{% endif %}"></textarea>
+                          class="form-control{% if form.bio.errors %}is-invalid{% endif %}"
+                          >{% if form.errors %}{{ form.bio.value }}{% else %}{{ request.user.profile.bio }}{% endif %}</textarea>
                       </div>
                   </div>
                   <hr>
@@ -119,7 +121,7 @@
                         <label for="id_organization" class="mb-0" style="line-height: 38px;">Organizacion</label>
                       </div>
                       <div class="col-sm-4 text-secondary">
-                        <input type="text" id="id_organization" 
+                        <input type="text" id="id_organization" name="organization"
                         class="form-control {% if form.organization.errors %} is-invalid {% endif %}" 
                         value="{% if form.errors %}{{ form.organization.value }}{% else %}{{ request.user.profile.organization }}{% endif %}">
                       </div>
@@ -127,7 +129,7 @@
                         <label for="id_location" class="mb-0" style="line-height: 38px;">Localizacion</label>
                       </div>
                       <div class="col-sm-4 text-secondary">
-                          <input type="text" id="id_location" 
+                          <input type="text" id="id_location"  name="location"
                           class="form-control {% if form.location.errors %} is-invalid {% endif %}" 
                           value="{% if form.errors %}{{ form.location.value }}{% else %}{{ request.user.profile.location }}{% endif %}">
                       </div>
@@ -182,7 +184,6 @@
                 </div>  
               </div>
 
-              {{ form}}
               <!-- <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
@@ -239,12 +240,11 @@
                   </div>
                 </div>
               </div> -->
-
-
-
+              
             </div>
           </div>
-
+          
         </div>
-    </div>
+      </div>
+    </form>
 {% endblock %}

@@ -24,7 +24,10 @@ class ProfileAdmin(admin.ModelAdmin):
             "fields": (('user', 'picture'),),
         }),
         ("Extra Info", {
-            "fields": (('bio', 'phone'),),
+            "fields": (('bio', 'phone', 'gender', 'location', 'organization'),),
+        }),
+        ("Social Networks", {
+            "fields": (('website', 'twitter', 'instagram', 'facebook'),),
         }),
         ("Metadata", {
             "fields": (('created', 'modified'),),
