@@ -4,22 +4,23 @@
 
 {% block content %}
 <div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-6 pt-3 pb-3" id="profile-box">
-            <h4 class="mb-4">Post a new photo!</h4>
+    <div class="row justify-content-md-center align-content-center">
+        <div class="col-md-6 col-12 pt-3 pb-3" id="profile-box">
+            <h4 class="mb-4">Publica un nuevo Post!</h4>
 
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-<!-- 
-                <input type="hidden" name="profile" value="{{ request.user.profile }}" />
+                <input type="hidden" name="profile" value="{{ request.user.profile.id }}" />
 
                 {# Website field #}
                 <div class="form-group">
+                    <label for="id_title">Titulo:</label>
                     <input
                         class="form-control {% if form.title.errors %}is-invalid{% endif %}"
                         type="text"
                         name="title"
-                        placeholder="Title"
+                        placeholder="Digite el titulo del post"
+                        id="id_title"
                     >
                     <div class="invalid-feedback">
                         {% for error in form.title.errors %}{{ error }}{% endfor %}
@@ -28,11 +29,13 @@
 
                 {# Website field #}
                 <div class="form-group">
+                    <label for="id_description">Descripcion:</label>
                     <input
                         class="form-control {% if form.description.errors %}is-invalid{% endif %}"
                         type="text"
                         name="description"
-                        placeholder="Description"
+                        placeholder="Digite la descripcion del post"
+                        id="id_description"
                     >
                     <div class="invalid-feedback">
                         {% for error in form.title.errors %}{{ error }}{% endfor %}
@@ -40,20 +43,20 @@
                 </div>
                 {# Photo field #}
                 <div class="form-group">
-                    <label>Choose your photo:</label>
+                    <label for="id_photo">Foto de la publicacion: </label>
                     <input
                         class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
                         type="file"
                         name="photo"
                         placeholder="photo"
+                        accept="image/*"
+                        id="id_photo"
                     >
                     <div class="invalid-feedback">
                         {% for error in form.photo.errors %}{{ error }}{% endfor %}
                     </div>
-                </div> -->
-
+                </div> 
                 <button type="submit" class="btn btn-primary btn-block mt-5">Publish!</button>
-                {{form }}
             </form>
         </div>
     </div>

@@ -1,22 +1,38 @@
 
 <div class="col-sm-12 col-md-8 offset-md-2 mt-5 p-0 post-container">
-    <div class="media pt-3 pl-3 pb-1">
-        <a href="{% url 'users:profiles' post.profile.user.username %}">
-            <img class="mr-3 rounded-circle" height="35" src="{{ post.profile.picture.url }}" alt="{{ post.user.get_full_name }}">
-        </a>
-        <div class="media-body">
-            <p style="margin-top: 5px;">{{ post.user.get_full_name  }}</p>
+
+    <div class="card shadow" style="border-radius: 1rem;">
+
+        <div class="media pt-3 pl-3 pb-1">
+            <a href="{% url 'users:profiles' post.profile.user.username %}">
+                <img class="mr-3 rounded-circle" height="50" width="50" src="{{ post.profile.picture.url }}" alt="{{ post.user.get_full_name }}" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);">
+            </a>
+            <div class="media-body">
+                <div class="col">
+
+                    <span style="margin-top: 5px;"><b>{{ post.profile.user.get_full_name }}</b> - <small>{{ post.created }}</small></span>
+                    <br>
+                    <span class="text-muted"><small>{{ post.profile.location }} - {{ post.profile.organization}}</small></span>
+                </div>
+
+            </div>
+        </div>
+    
+        <div class="card-body">
+
+            <img class="shadow" src="{{ post.photo.url }}" alt="{{ post.title }}" style="border-radius: 1rem; width: 100%;">
+        
+            <p class="mt-1 ml-2" >
+                <a href="" style="color: #000; font-size: 20px;">
+                    <i class="far fa-share-square"></i>
+                </a>
+                <a href="" style="color: #000; font-size: 20px;">
+                    <i class="far fa-heart"></i>
+                </a> {{ likes }} likes
+            </p>
+            <p class="ml-2 mt-0 mb-2">
+                <b>{{ post.title }}</b> - <small>{{ post.description }}</small>
+            </p>
         </div>
     </div>
-
-    <img style="width: 100%;" src="{{ post.photo.url }}" alt="{{ post.title }}">
-
-    <p class="mt-1 ml-2" >
-        <a href="" style="color: #000; font-size: 20px;">
-            <i class="far fa-heart"></i>
-        </a> 30 likes
-    </p>
-    <p class="ml-2 mt-0 mb-2">
-        <b>{{ post.title }}</b> - <small>{{ post.created }}</small>
-    </p>
-</div>
+</div> 

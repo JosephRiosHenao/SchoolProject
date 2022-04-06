@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from django.urls import reverse_lazy
 
-from django.views.generic import TemplateView, CreateView, ListView, DetailView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 
 from datetime import datetime
 
@@ -25,9 +25,16 @@ class ListsPosts(ListView):
     context_object_name = 'posts'
     paginate_by = 5
     
+    def get_context_data(self, **kwargs):        
+        return super().get_context_data(**kwargs)
+    
+    
 class DetailPost(LoginRequiredMixin, DetailView):
     """Return post detail."""
 
     template_name = 'social/detail_post.html'
     queryset = Post.objects.all()
     context_object_name = 'post'
+    
+class TogglePost(LoginRequiredMixin, UpdateView):
+    model = Post
