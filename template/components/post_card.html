@@ -1,27 +1,36 @@
 
 <div class="col-sm-12 col-md-8 offset-md-2 mt-5 p-0 post-container">
 
-    <div class="card shadow" style="border-radius: 1rem;">
+    <div class="card shadow" style="border-radius: 1rem !important;">
 
-        <div class="media pt-3 pl-3 pb-1">
+        <div class="card-header media pt-3 pl-3 pb-3">
             <a href="{% url 'users:profiles' post.profile.user.username %}">
-                <img class="mr-3 rounded-circle" height="50" width="50" src="{{ post.profile.picture.url }}" alt="{{ post.user.get_full_name }}" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);">
+                <img class="mr-3 rounded-circle" height="50" width="50" src="{{ post.profile.picture.url }}" alt="{{ post.user.get_full_name }}" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.432); object-fit: cover;">
             </a>
             <div class="media-body">
                 <div class="col">
-
                     <span style="margin-top: 5px;"><b>{{ post.profile.user.get_full_name }}</b> - <small>{{ post.created }}</small></span>
                     <br>
                     <span class="text-muted"><small>{{ post.profile.location }} - {{ post.profile.organization}}</small></span>
                 </div>
-
             </div>
+            
+            {% if post.profile.user == request.user %}
+                
+            <div class="m-auto">
+                <a href="{% url 'social:toggle' post.id %}" class="btn btn-danger">Desactivar</a>
+            </div>
+            {% endif %}
+                
         </div>
     
         <div class="card-body">
 
             <img class="shadow" src="{{ post.photo.url }}" alt="{{ post.title }}" style="border-radius: 1rem; width: 100%;">
-        
+        </div>
+
+        <div class="card-footer">
+
             <p class="mt-1 ml-2" >
                 <a href="" style="color: #000; font-size: 20px;">
                     <i class="far fa-share-square"></i>

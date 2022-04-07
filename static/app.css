@@ -6,7 +6,8 @@
 
 .bg-register-image{
     background-color: #4e73dfba !important;
-}
-.navbar-nav {
-    position: fixed;
+} 
+
+label.custom-file-label::after{
+    content: "Buscar";
 }

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 
@@ -36,5 +36,16 @@ class DetailPost(LoginRequiredMixin, DetailView):
     queryset = Post.objects.all()
     context_object_name = 'post'
     
-class TogglePost(LoginRequiredMixin, UpdateView):
-    model = Post
+def togglePost(request):
+    id = request.GET.get('pk', None)
+    try:
+        obj = Post.objects.get(pk=id)
+        if obj.state:
+            obj.state = False
+            obj.save()
+        else:
+            obj.state = True
+            obj.save()
+    except:
+        print(request, "Ha ocurrido un error. Por favor intente de nuevo.")
+    return reverse("social:feed")

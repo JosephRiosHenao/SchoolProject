@@ -9,6 +9,7 @@ class Post(models.Model):
     description = models.TextField(max_length=300, blank=True)
     photo = models.ImageField(upload_to='posts/photos')
     likes = models.ForeignKey('users.Profile', on_delete=models.CASCADE, related_name='likes', null=True, blank=True)
+    state = models.BooleanField(default=True)
     
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

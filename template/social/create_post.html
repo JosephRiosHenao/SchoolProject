@@ -6,61 +6,80 @@
 <div class="container">
     <div class="row justify-content-md-center align-content-center">
         <div class="col-md-6 col-12 pt-3 pb-3" id="profile-box">
-            <h4 class="mb-4">Publica un nuevo Post!</h4>
-
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="hidden" name="profile" value="{{ request.user.profile.id }}" />
-
-                {# Website field #}
-                <div class="form-group">
-                    <label for="id_title">Titulo:</label>
-                    <input
-                        class="form-control {% if form.title.errors %}is-invalid{% endif %}"
-                        type="text"
-                        name="title"
-                        placeholder="Digite el titulo del post"
-                        id="id_title"
-                    >
-                    <div class="invalid-feedback">
-                        {% for error in form.title.errors %}{{ error }}{% endfor %}
-                    </div>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Publica un nuevo Post!</h6>
                 </div>
+                <div class="card-body">
 
-                {# Website field #}
-                <div class="form-group">
-                    <label for="id_description">Descripcion:</label>
-                    <input
-                        class="form-control {% if form.description.errors %}is-invalid{% endif %}"
-                        type="text"
-                        name="description"
-                        placeholder="Digite la descripcion del post"
-                        id="id_description"
-                    >
-                    <div class="invalid-feedback">
-                        {% for error in form.title.errors %}{{ error }}{% endfor %}
-                    </div>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="profile" value="{{ request.user.profile.id }}" />
+         
+                        {# Website field #}
+                        <div class="form-group">
+                            <label for="id_title">Titulo:</label>
+                            <input
+                                class="form-control {% if form.title.errors %}is-invalid{% endif %}"
+                                type="text"
+                                name="title"
+                                placeholder="Digite el titulo del post"
+                                id="id_title"
+                            >
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>
+        
+                        {# Website field #}
+                        <div class="form-group">
+                            <label for="id_description">Descripcion:</label>
+                            <input
+                                class="form-control {% if form.description.errors %}is-invalid{% endif %}"
+                                type="text"
+                                name="description"
+                                placeholder="Digite la descripcion del post"
+                                id="id_description"
+                            >
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>
+                        {# Photo field #}
+                        <!-- <div class="form-group">
+                            <label for="id_photo">Foto de la publicacion: </label>
+                            <input
+                                class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
+                                type="file"
+                                name="photo"
+                                placeholder="photo"
+                                accept="image/*"
+                                id="id_photo"
+                            >
+                            <div class="invalid-feedback">
+                                {% for error in form.photo.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>  -->
+                        <div class="form-group">
+
+                            <label for="id_photo">Foto de la publicacion: </label>
+
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" name="photo" id="id_photo" accept="image/*" class="custom-file-input {% if form.photo.errors %}is-invalid{% endif %}">
+                                    <label class="custom-file-label" for="id_photo">Selecciona la imagen</label>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback">
+                                {% for error in form.photo.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-5">Publicar</button>
+                    </form>
                 </div>
-                {# Photo field #}
-                <div class="form-group">
-                    <label for="id_photo">Foto de la publicacion: </label>
-                    <input
-                        class="form-control {% if form.photo.errors %}is-invalid{% endif %}"
-                        type="file"
-                        name="photo"
-                        placeholder="photo"
-                        accept="image/*"
-                        id="id_photo"
-                    >
-                    <div class="invalid-feedback">
-                        {% for error in form.photo.errors %}{{ error }}{% endfor %}
-                    </div>
-                </div> 
-                <button type="submit" class="btn btn-primary btn-block mt-5">Publish!</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-
 {% endblock content %}
     
