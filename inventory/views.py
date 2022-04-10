@@ -43,7 +43,7 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class SubCategoryView(LoginRequiredMixin, ListView):
-    model = Category
+    model = SubCategory
     context_object_name = 'obj'
     template_name = 'inventory/subcategory_list.html'
     
