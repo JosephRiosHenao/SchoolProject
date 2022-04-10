@@ -9,3 +9,23 @@
 </div>
 
 {% endblock content %}
+
+{% block js %}
+  <script>
+    function togglePost(id){
+        $.ajax({
+            type: 'GET',
+            url: '{% url "social:toggle" %}',
+            data: {
+                'pk': id
+            },
+            dataType: 'json',
+            success: function(data){
+                setTimeout(function(){
+                    location.reload();
+                }, 100);
+            }
+        });
+    }
+  </script>
+{% endblock js %}

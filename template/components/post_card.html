@@ -18,15 +18,14 @@
             {% if post.profile.user == request.user %}
                 
             <div class="m-auto">
-                <a href="{% url 'social:toggle' post.id %}" class="btn btn-danger">Desactivar</a>
+                <button onclick="togglePost({{ post.id }})" class="btn {% if post.state %}btn-danger{% else %}btn-success{% endif %} ">{% if post.state %}Desactivar{% else %}Activar{% endif %}</button>
             </div>
             {% endif %}
                 
         </div>
     
-        <div class="card-body">
-
-            <img class="shadow" src="{{ post.photo.url }}" alt="{{ post.title }}" style="border-radius: 1rem; width: 100%;">
+        <div class="card-body {% if not post.state %}image-deactivate{% endif %}">
+            <img class="shadow" src="{{ post.photo.url }}" alt="{{ post.title }}" style="border-radius: 1rem; width: 100%; z-index: 1;">
         </div>
 
         <div class="card-footer">
@@ -40,7 +39,7 @@
                 </a> {{ likes }} likes
             </p>
             <p class="ml-2 mt-0 mb-2">
-                <b>{{ post.title }}</b> - <small>{{ post.description }}</small>
+                <b>{{ post.title }}</b> - <small>{{ post.description }} {{post.state}}</small>
             </p>
         </div>
     </div>

@@ -1,8 +1,10 @@
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+
 from django.shortcuts import render
 
 from django.urls import reverse_lazy, reverse
 
-from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, RedirectView, View
 
 from datetime import datetime
 
@@ -11,6 +13,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from social.models import Post
 
 from .forms import PostForm
+
+from django.http import JsonResponse
+
+
 # Create your views here.
 
 class CreatePost(LoginRequiredMixin, CreateView):
@@ -36,16 +42,24 @@ class DetailPost(LoginRequiredMixin, DetailView):
     queryset = Post.objects.all()
     context_object_name = 'post'
     
+# class tooglePost(LoginRequiredMixin, View):
+#     template_name = "base.html"
+    
+#     def get(self, *args, **kwargs):
+#         pk = self.kwargs.get('pk')
+#         post = Post.objects.get(id=pk)
+#         post.state = False if post.state else True
+#         post.save()
+#         print("Estado cambiado con exito a {}".format(post.state))
+        
 def togglePost(request):
     id = request.GET.get('pk', None)
     try:
-        obj = Post.objects.get(pk=id)
-        if obj.state:
-            obj.state = False
-            obj.save()
-        else:
-            obj.state = True
-            obj.save()
+        obj = Post.objects.get(id=id)
+        obj.state = False if obj.state else True
+        obj.save()
+        print("Se logró activar/desactivar.")
+        return JsonResponse({'success': True})
     except:
-        print(request, "Ha ocurrido un error. Por favor intente de nuevo.")
-    return reverse("social:feed")
+        print("No se logró activar/desactivar.")
+        return JsonResponse({'pk': 0})

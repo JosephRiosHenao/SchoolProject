@@ -8,10 +8,33 @@
     <div class="row">
 
         {% for post in posts %}
-            {% include "components/post_card.html" %}
+            <!-- if post.state or post.profile.user == request.user -->
+            {% if post.state or post.profile.user == request.user %}
+                {% include "components/post_card.html" %}
+            {% endif %}
         {% endfor %}
     </div>
 </div>
 
 {% include "components/pagination.html" %}
 {% endblock content %}
+
+{% block js %}
+  <script>
+    function togglePost(id){
+        $.ajax({
+            type: 'GET',
+            url: '{% url "social:toggle" %}',
+            data: {
+                'pk': id
+            },
+            dataType: 'json',
+            success: function(data){
+                setTimeout(function(){
+                    location.reload();
+                }, 100);
+            }
+        });
+    }
+  </script>
+{% endblock js %}
