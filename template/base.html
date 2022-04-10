@@ -21,6 +21,8 @@
     <!-- Custom styles for this template-->
     <link href=" {% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.css' %}">
+
     <link href=" {% static 'app.css' %}" rel="stylesheet">
     
     {% block css %}{% endblock css %}
@@ -40,7 +42,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">JESSCOUNT <sup>V0.7</sup></div>
+                <div class="sidebar-brand-text mx-3">JESSCOUNT <sup>V0.9</sup></div>
             </a>
 
             <!-- Divider -->
@@ -67,7 +69,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Catalogos de inventario:</h6>
                         <a class="collapse-item" href="{% url 'inventory:category_list' %} ">Categorias</a>
-                        <a class="collapse-item" href="{% url 'inventory:category_create' %} ">Crear Categorias</a>
+                        <a class="collapse-item" href="{% url 'inventory:subcategory_list' %} ">Sub Categorias</a>
                     </div>
                 </div>
             </li>
@@ -222,6 +224,10 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- Datatables -->
+    <script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
     <!-- Me -->
     {% block js %}{% endblock js %}

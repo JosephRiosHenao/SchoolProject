@@ -14,7 +14,10 @@ class CategoryForm(forms.ModelForm):
         labels = {'description':"Descripcion",'state':"Estado"}
         widget = {'description': forms.TextInput} 
         
-    def save(self, commit=True):
-        instance =  super(CategoryForm, self).save(commit=False)
-        import pdb; pdb.set_trace()
 
+class SubCategoryForm(forms.ModelForm):
+    class Meta():
+        model = SubCategory
+        fields = ['description','category','state']
+        labels = {'description':"Descripcion",'category':"Categoria",'state':"Estado"}
+        widget = {'description': forms.TextInput, 'category':forms.ModelChoiceField(queryset=Category.objects.all())}
