@@ -23,4 +23,16 @@ urlpatterns = [
     path('brand/update/<int:pk>/', BrandUpdate.as_view(), name='brand_update'),
     path('brand/toggle/<int:pk>/', brandToggle, name='brand_toggle'),
     
+    # UNIT METER
+    path('unitmeter/list/', UnitMeterView.as_view(), name='unitmeter_list'),
+    path('unitmeter/create/', UnitMeterCreate.as_view(), name='unitmeter_create'),
+    path('unitmeter/update/<int:pk>/', UnitMeterUpdate.as_view(), name='unitmeter_update'),
+    path('unitmeter/toggle/<int:pk>/', unitmeterToggle, name='unitmeter_toggle'),
+    
+    # PRODUCT
+    path('product/list/', ProductView.as_view(), name='product_list'),
+    path('product/create/', ProductCreate.as_view(), name='product_create'),
+    path('product/update/<int:pk>/', ProductUpdate.as_view(), name='product_update'),
+    path('product/toggle/<int:pk>/', productToggle, name='product_toggle'),
+    
 ]

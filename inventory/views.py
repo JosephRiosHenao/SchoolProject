@@ -120,3 +120,45 @@ def brandToggle(request, pk):
     brand.state = not brand.state
     brand.save()
     return redirect('inventory:brand_list')
+
+
+class UnitMeterView(LoginRequiredMixin, ListView):
+    model = UnitMeter
+    context_object_name = 'obj'
+    template_name = 'inventory/unitmeter_list.html'
+
+class UnitMeterCreate(LoginRequiredMixin, CreateView):
+    model = UnitMeter
+    form_class = UnitMeterForm
+    template_name = 'inventory/unitmeter_form.html'
+    success_url = reverse_lazy('inventory:unitmeter_list')
+
+    def form_valid(self, form):
+        form.instance.user_created = self.request.user
+        form.instance.user_modified = self.request.user
+        return super().form_valid(form)
+
+class UnitMeterUpdate(LoginRequiredMixin, UpdateView):
+    model = UnitMeter
+    context_object_name = 'obj'
+    form_class = UnitMeterForm
+    template_name = 'inventory/unitmeter_form.html'
+    success_url = reverse_lazy('inventory:unitmeter_list')
+    
+    def form_valid(self, form):
+        form.instance.user_modified = self.request.user
+        return super().form_valid(form)
+    
+def unitmeterToggle(request, pk):
+    unitmeter = UnitMeter.objects.get(pk=pk)
+    unitmeter.state = not unitmeter.state
+    unitmeter.save()
+    return redirect('inventory:unitmeter_list')
+
+class ProductView(LoginRequiredMixin, ListView):
+    model = Product
+    context_object_name = 'obj'
+    template_name = 'inventory/product_list.html'
+
+
+    

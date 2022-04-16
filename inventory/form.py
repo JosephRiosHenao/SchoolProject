@@ -33,3 +33,9 @@ class BrandForm(forms.ModelForm):
         model = Brand
         fields = ['description','state']
         labels = {'description':"Descripcion",'state':"Estado"}
+
+class UnitMeterForm(forms.ModelForm):
+    class Meta():
+        model = UnitMeter
+        fields = ['description','state']
+        labels = {'description':"Descripcion",'state':"Estado"}
