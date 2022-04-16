@@ -17,7 +17,7 @@
                                 <div class="col-9">
                                     <div class="form-group">
                                         <label for="id_description">Descripcion</label>
-                                        <input type="text" class="form-control w-100" id="id_description" name="description" value="{{form.description.value}}">
+                                        <input type="text" class="form-control w-100" id="id_description" name="description" {% if obj %}value="{{form.description.value}}"{% endif %}">
                                     </div>
                                 </div>
                                 <div class="col-3">

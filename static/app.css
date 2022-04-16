@@ -12,16 +12,16 @@ label.custom-file-label::after{
     content: "Buscar";
 }
 
-.image-deactivate{
+.image-deactivate, .image-deactivate-notext {
     position: relative;
 }
-.image-deactivate::before{
+.image-deactivate::before, .image-deactivate-notext::before {
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     content: "Post desactivado";
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bolder;
     text-transform: uppercase;
     position: absolute;
@@ -29,13 +29,21 @@ label.custom-file-label::after{
     left: 0;
     width: 100%;
     height: 100%;
+    text-align: center;
     /* background-color: rgba(0,0,0,0.5); */
     /* background: linear-gradient(to top, rgba(127, 127, 213, 0.7), rgba(134, 168, 231, 0.7), rgba(145, 234, 228, 0.7));  */
     /* background: linear-gradient(to top, #833ab4bd, #fd1d1dbd, #fcb045bd); */
     /* background: linear-gradient(to bottom, #24c6dcbd, #514a9dbd);  */
-    background: linear-gradient(180deg,#4e73dfbd 10%,#224abebd 100%);
-
-
+    background: linear-gradient(180deg,#4e73dfbd 10%,#224abebd 100%)
 }
 
-    /* font: bold 6.5em/2em monospace; */
+.image-deactivate-notext::before{
+    content: "";
+}
+/* https://www.codegrepper.com/code-examples/css/frameworks/materialize/%40media+query+in+css+sm */
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+    .image-deactivate::before, .image-deactivate-notext::before {
+        font-size: 1.4rem
+    }
+}

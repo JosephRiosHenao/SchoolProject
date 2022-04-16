@@ -17,7 +17,10 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+    
+    <!-- Responsive Datatables  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.css">
+        
     <!-- Custom styles for this template-->
     <link href=" {% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
@@ -29,8 +32,8 @@
 
         
 </head>
-
-<body id="page-top" class="{% if 'login' in request.path or 'logout' in request.path or 'register' in request.path %}bg-gradient-primary{% endif %}">
+<body>
+<div id="page-top" class="{% if 'login' in request.path or 'logout' in request.path or 'register' in request.path %}bg-gradient-primary{% endif %}">
     <!-- Page Wrapper -->
     <div id="wrapper">
         {% block sidebar %}
@@ -70,6 +73,7 @@
                         <h6 class="collapse-header">Catalogos de inventario:</h6>
                         <a class="collapse-item" href="{% url 'inventory:category_list' %} ">Categorias</a>
                         <a class="collapse-item" href="{% url 'inventory:subcategory_list' %} ">Sub Categorias</a>
+                        <a class="collapse-item" href="{% url 'inventory:brand_list' %} ">Marcas</a>
                     </div>
                 </div>
             </li>
@@ -228,6 +232,7 @@
     <!-- Datatables -->
     <script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
 
     <!-- Me -->
     {% block js %}{% endblock js %}

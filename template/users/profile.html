@@ -61,8 +61,8 @@
     <div class="row mt-3">
         {% for post in posts %}
             {% if post.profile.user == request.user or post.state %}
-                <div class="col-sm-4 pt-5 pb-5 pr-5 pl-5 d-flex justify-content-center align-items-center">
-                        <a href="{% url 'social:detail' post.pk %}" class="border">
+                <div class="col-sm-4 p-1 d-flex justify-content-center align-items-center">
+                        <a href="{% url 'social:detail' post.pk %}" class="border {% if not post.state %}image-deactivate{% endif %}">
                             <img src="{{ post.photo.url }}" alt="{{ post.title }}" class="img-fluid shadow-lg" style="border-radius: 1rem;"/>
                         </a>
                 </div>
