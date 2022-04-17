@@ -160,5 +160,30 @@ class ProductView(LoginRequiredMixin, ListView):
     context_object_name = 'obj'
     template_name = 'inventory/product_list.html'
 
-
+class ProductCreate(LoginRequiredMixin, CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'inventory/product_form.html'
+    success_url = reverse_lazy('inventory:product_list')
     
+    def form_valid(self, form):
+        form.instance.user_created = self.request.user
+        form.instance.user_modified = self.request.user
+        return super().form_valid(form)
+
+class ProductUpdate(LoginRequiredMixin, UpdateView):
+    model = Product
+    form_class = ProductForm
+    context_object_name = 'obj'
+    template_name = 'inventory/product_form.html'
+    success_url = reverse_lazy('inventory:product_list')
+    
+    def form_valid(self, form):
+        form.instance.user_modified = self.request.user
+        return super().form_valid(form)
+    
+def productToggle(request, pk):
+    product = Product.objects.get(pk=pk)
+    product.state = not product.state
+    product.save()
+    return redirect('inventory:product_list')

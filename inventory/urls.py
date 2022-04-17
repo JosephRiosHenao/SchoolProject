@@ -31,7 +31,7 @@ urlpatterns = [
     
     # PRODUCT
     path('product/list/', ProductView.as_view(), name='product_list'),
-    path('product/create/', ProductCreate.as_view(), name='product_create'),
+    path('product/create', ProductCreate.as_view(), name='product_create'),
     path('product/update/<int:pk>/', ProductUpdate.as_view(), name='product_update'),
     path('product/toggle/<int:pk>/', productToggle, name='product_toggle'),
     
