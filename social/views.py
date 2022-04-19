@@ -47,7 +47,7 @@ class DetailPost(LoginRequiredMixin, DetailView):
     
 #     def get(self, *args, **kwargs):
 #         pk = self.kwargs.get('pk')
-#         post = Post.objects.get(id=pk)
+#         post = Post.objects.get(id    =pk)
 #         post.state = False if post.state else True
 #         post.save()
 #         print("Estado cambiado con exito a {}".format(post.state))
