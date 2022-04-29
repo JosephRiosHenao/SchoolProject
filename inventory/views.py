@@ -18,9 +18,13 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 # CATEGORY
     
 class CategoryView(LoginRequiredMixin, ListView):
+    
     model = Category
     context_object_name = 'obj'
     template_name = 'inventory/category_list.html'
+    
+    def get_queryset(self): return Category.objects.filter(user_created = self.request.user)
+    
 
 class CategoryCreateView(LoginRequiredMixin, CreateView):    
     model = Category
@@ -56,6 +60,9 @@ class SubCategoryView(LoginRequiredMixin, ListView):
     model = SubCategory
     context_object_name = 'obj'
     template_name = 'inventory/subcategory_list.html'
+    
+    def get_queryset(self): return SubCategory.objects.filter(user_created = self.request.user)
+
     
 class SubCategoryCreate(LoginRequiredMixin, CreateView):
     model = SubCategory
@@ -93,6 +100,9 @@ class BrandView(LoginRequiredMixin, ListView):
     context_object_name = 'obj'
     template_name = 'inventory/brand_list.html'
 
+    def get_queryset(self): return Brand.objects.filter(user_created = self.request.user)
+
+
 class BrandCreate(LoginRequiredMixin, CreateView):
     model = Brand
     form_class = BrandForm
@@ -126,6 +136,9 @@ class UnitMeterView(LoginRequiredMixin, ListView):
     model = UnitMeter
     context_object_name = 'obj'
     template_name = 'inventory/unitmeter_list.html'
+    
+    def get_queryset(self): return UnitMeter.objects.filter(user_created = self.request.user)
+
 
 class UnitMeterCreate(LoginRequiredMixin, CreateView):
     model = UnitMeter
@@ -159,6 +172,9 @@ class ProductView(LoginRequiredMixin, ListView):
     model = Product
     context_object_name = 'obj'
     template_name = 'inventory/product_list.html'
+    
+    def get_queryset(self): return Product.objects.filter(user_created = self.request.user)
+
 
 class ProductCreate(LoginRequiredMixin, CreateView):
     model = Product

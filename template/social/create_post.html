@@ -9,7 +9,7 @@
                         </div>
                         <div class="card-body h-100 ">
         
-                            <form method="POST" enctype="multipart/form-data">
+                            <form method="POST" enctype="multipart/form-data" action="{% url 'social:create' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="profile" value="{{ request.user.profile.id }}" />
                  

@@ -1,13 +1,13 @@
 
 {% extends 'base.html' %}
-{% block title %}SubCategorias{% endblock title %}
+{% block title %}Proveedores{% endblock title %}
 
 {% block content %}
 <div class="container">
     <div class="card shadow mb-4">
         <div
             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Listado de SubCategorias</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Listado de Proveedores</h6>
             <div class="dropdown no-arrow">
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -16,7 +16,7 @@
                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                     aria-labelledby="dropdownMenuLink">
                     <div class="dropdown-header">Acciones</div>
-                    <a class="dropdown-item" href="{% url 'inventory:subcategory_create' %}"><span class="fa fa-calendar-plus"></span> Nueva</a>
+                    <a class="dropdown-item" onclick="return openModal('{% url 'cmp:provider_create' %}')" href="#"><i class="far fa-calendar-plus"></i> Nuevo</a>
                 </div>
             </div>
         </div>
@@ -27,26 +27,28 @@
                     No se encontraron registros
                 </div>
             {% else %}
-                <table class="table table-striped table-hover" id="subcategoryTable" width="100%">
+                <table class="table table-striped table-hover" id="providerTable" width="100%" align="center" style="text-align: center;">
                     <thead>
-                        <th>Categoria</th>
                         <th>Descripcion</th>
+                        <th>Localizacion</th>
+                        <th>Contacto</th>
+                        <th>Telefono</th>
+                        <th>Correo electronico</th>
                         <th>Estado</th>
-                        <th>F. Creado</th>
-                        <th>F. Modificado</th>
                         <th class="all">Acciones</th>
                     </thead>
                     <tbody>
                         {% for item in obj %}
                             <tr>
-                                <td>{{item.category}}</td>
                                 <td>{{item.description}}</td>
+                                <td>{{item.location}}</td>
+                                <td>{{item.contact}}</td>
+                                <td>{{item.telphone}}</td>
+                                <td>{{item.email}}</td>
                                 <td style="text-align: center;">{% if item.state %}<span class="badge badge-success p-2">Activo</span>{% else %}<span class="badge badge-danger p-2">Desactivado</span>{% endif %}</td>
-                                <td>{{item.create_date | date:"d/m/Y H:i:s"}}</td>
-                                <td>{{item.modified_date | date:"d/m/Y H:i:s"}}</td>
                                 <td>
-                                    <a href="{% url 'inventory:subcategory_update' item.id %}" role="button" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>
-                                    <a href="{% url 'inventory:subcategory_toggle' item.id %}" role="button" class="btn {% if item.state %}btn-danger{% else %}btn-success{% endif %} btn-circle">{% if item.state %}<i class="far fa-thumbs-down"></i>{% else %}<i class="far fa-thumbs-up"></i>{% endif %}</a>
+                                    <a onclick="return openModal('{% url 'cmp:provider_update' item.id %}')" href="#" role="button" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>
+                                    <a href="{% url 'cmp:provider_toggle' item.id %}" role="button" class="btn {% if item.state %}btn-danger{% else %}btn-success{% endif %} btn-circle">{% if item.state %}<i class="far fa-thumbs-down"></i>{% else %}<i class="far fa-thumbs-up"></i>{% endif %}</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -65,12 +67,13 @@
 {% block js %}
     <script>
         $(document).ready(function() {
-            $('#subcategoryTable').DataTable({
+            $('#providerTable').DataTable({
                 "responsive": true,
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-                }
+                },
             });
+
         });
     </script>
 {% endblock js %}

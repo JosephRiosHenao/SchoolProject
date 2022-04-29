@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from colorfield.fields import ColorField
+from django.forms import CharField
 
 
 GENDERS = [
@@ -24,6 +26,8 @@ class Profile(models.Model):
     facebook = models.CharField(max_length=100, blank=True)
     instagram = models.CharField(max_length=100, blank=True)
     gender = models.CharField(max_length=15 , choices=GENDERS, blank=True, default='No binario')
-    
+    color_primary = models.CharField(default='#3cbff0', verbose_name="Color primario sistema*", max_length=7)
+    color_secondary = models.CharField(default='#4d4d4d', verbose_name="Color secundario sistema*", max_length=7)
+
     def __str__(self):
         return self.user.username

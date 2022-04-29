@@ -18,7 +18,7 @@ class Category(MetaInfoBase):
         verbose_name_plural = "Categories"
 
 class SubCategory(MetaInfoBase):
-    description = models.CharField(max_length=100, unique=True)
+    description = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self): return "{}:{}".format(self.category.description, self.description)

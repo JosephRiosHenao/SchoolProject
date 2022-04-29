@@ -12,6 +12,11 @@
 
     <title>{% block title %}{% endblock title %} | JESSCOUNT</title>
 
+    <script>
+        document.documentElement.style.setProperty('--primary-color', '{{ request.user.profile.color_primary }}');
+        document.documentElement.style.setProperty('--secondary-color', '{{ request.user.profile.color_secondary }}');
+    </script>
+
     <!-- Custom fonts for this template-->
     <link href=" {% static 'base/vendor/fontawesome-free/css/all.min.css' %} " rel="stylesheet" type="text/css">
     <link
@@ -27,7 +32,7 @@
     <link rel="stylesheet" href="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.css' %}">
 
     <link href=" {% static 'app.css' %}" rel="stylesheet">
-    
+
     {% block css %}{% endblock css %}
 
         
@@ -79,12 +84,21 @@
                     </div>
                 </div>
             </li>
-            <hr class="sidebar-divider my-0">
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'inventory:category_list' %}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Categorias</span></a>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>CMP</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Catalogos de CMP:</h6>
+                        <a class="collapse-item" href="{% url 'cmp:provider_list' %} ">Proveedores</a>
+                    </div>
+                </div>
             </li>
+
             <hr class="sidebar-divider my-0">
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'social:feed' %}">

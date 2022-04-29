@@ -2,6 +2,8 @@ from django import forms
 
 from django.contrib.auth.models import User 
 
+from colorfield.widgets import ColorWidget
+
 from users.models import Profile
 
 class RegisterForm(forms.Form):
@@ -11,6 +13,15 @@ class RegisterForm(forms.Form):
     password = forms.CharField(label='', widget=forms.PasswordInput())
     password_again = forms.CharField(label='', widget=forms.PasswordInput())
     email = forms.EmailField(label='')
+    color_primary = forms.CharField(label='Color primario', max_length=7,
+        widget=forms.TextInput(attrs={'type': 'color'}))
+    color_secondary = forms.CharField(label='Color secundario', max_length=7,
+        widget=forms.TextInput(attrs={'type': 'color'}))
+    
+    class Meta:
+        model = Profile
+        fields = ['username','first_name','last_name','password','password_again','email']
+    
     
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -32,3 +43,14 @@ class RegisterForm(forms.Form):
         user = User.objects.create_user(**data)
         profile = Profile(user=user)
         profile.save()
+        
+class ProfileForm(forms.Form):
+    color_primary = forms.CharField(label='Color primario', max_length=7,
+        widget=forms.TextInput(attrs={'type': 'color'}))
+    color_secondary = forms.CharField(label='Color secundario', max_length=7,
+        widget=forms.TextInput(attrs={'type': 'color'}))
+    
+    class Meta:
+        model = Profile
+        fields = ['website', 'twitter', 'instagram', 'facebook', 'bio', 'phone', 'organization', 'location', 'gender', 'picture', 'color_primary', 'color_secondary']
+    

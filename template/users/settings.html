@@ -134,6 +134,11 @@
                           value="{% if form.errors %}{{ form.location.value }}{% else %}{{ request.user.profile.location }}{% endif %}">
                       </div>
                   </div>  
+                  <div class="row">
+                    <div class="col-12">
+                      <input id="id_hex_color" maxlength="7" name="hex_color" type="color">
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -183,7 +188,7 @@
                   </div>
                 </div>  
               </div>
-
+              
               <!-- <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">

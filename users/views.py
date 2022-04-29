@@ -46,10 +46,10 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
 class ProfileEdit(LoginRequiredMixin, UpdateView):
     
-    template_name = 'users/settings.html'
     model = Profile
-    fields = ['website', 'twitter', 'instagram', 'facebook', 'bio', 'phone', 'organization', 'location', 'gender', 'picture']
-
+    form_class = ProfileForm
+    template_name = 'users/settings.html'
+    
     def get_object(self):
         return self.request.user.profile
 
