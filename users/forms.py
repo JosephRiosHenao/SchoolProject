@@ -13,10 +13,6 @@ class RegisterForm(forms.Form):
     password = forms.CharField(label='', widget=forms.PasswordInput())
     password_again = forms.CharField(label='', widget=forms.PasswordInput())
     email = forms.EmailField(label='')
-    color_primary = forms.CharField(label='Color primario', max_length=7,
-        widget=forms.TextInput(attrs={'type': 'color'}))
-    color_secondary = forms.CharField(label='Color secundario', max_length=7,
-        widget=forms.TextInput(attrs={'type': 'color'}))
     
     class Meta:
         model = Profile
@@ -44,13 +40,13 @@ class RegisterForm(forms.Form):
         profile = Profile(user=user)
         profile.save()
         
-class ProfileForm(forms.Form):
-    color_primary = forms.CharField(label='Color primario', max_length=7,
-        widget=forms.TextInput(attrs={'type': 'color'}))
-    color_secondary = forms.CharField(label='Color secundario', max_length=7,
-        widget=forms.TextInput(attrs={'type': 'color'}))
+# class ProfileForm(forms.Form):
+#     color_primary = forms.CharField(label='Color primario', max_length=7,
+#         widget=forms.TextInput(attrs={'type': 'color'}))
+#     color_secondary = forms.CharField(label='Color secundario', max_length=7,
+#         widget=forms.TextInput(attrs={'type': 'color'}))
     
-    class Meta:
-        model = Profile
-        fields = ['website', 'twitter', 'instagram', 'facebook', 'bio', 'phone', 'organization', 'location', 'gender', 'picture', 'color_primary', 'color_secondary']
+#     class Meta:
+#         model = Profile
+#         fields = ['website', 'twitter', 'instagram', 'facebook', 'bio', 'phone', 'organization', 'location', 'gender', 'picture', 'color_primary', 'color_secondary']
     

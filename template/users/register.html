@@ -27,24 +27,24 @@
                                 <form class="user" method="post" action="{% url 'users:register' %}">
                                     {% csrf_token %}
 
-                                        
+                                    
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="id_username" name="username"
-                                            placeholder="Usuario">
+                                        <input type="email" class="form-control form-control-user" id="id_email" name="email"
+                                            placeholder="Correo Electronico">
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input type="text" class="form-control form-control-user" id="id_first_name" name="first_name"
-                                                placeholder="Nombre">
+                                            placeholder="Nombre">
                                         </div>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control form-control-user" id="id_last_name" name="last_name"
-                                                placeholder="Apellidos">
+                                            placeholder="Apellidos">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="id_email" name="email"
-                                            placeholder="Correo Electronico">
+                                        <input type="text" class="form-control form-control-user" id="id_username" name="username"
+                                            placeholder="Usuario">
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -61,11 +61,9 @@
                                             {{ error | escape }}
                                         {% endfor %}
                                     {% endif %}
-                                    <button  type="submit" class="btn btn-primary btn-user btn-block">
+                                    <button  type="submit" class="btn btn-success btn-user btn-block">
                                         Registrar Cuenta
                                     </button>
-
-                                    {{form}}
                                     </form>
                                 <hr>
                                 <div class="text-center">

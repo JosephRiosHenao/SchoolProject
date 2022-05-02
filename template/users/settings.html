@@ -133,10 +133,18 @@
                           class="form-control {% if form.location.errors %} is-invalid {% endif %}" 
                           value="{% if form.errors %}{{ form.location.value }}{% else %}{{ request.user.profile.location }}{% endif %}">
                       </div>
-                  </div>  
+                  </div> 
+                  <hr> 
                   <div class="row">
-                    <div class="col-12">
-                      <input id="id_hex_color" maxlength="7" name="hex_color" type="color">
+                    <div class="col-md-6">
+                      <label for="id_color_primary">Color primario del Sistema</label>
+                      <input id="id_color_primary" maxlength="7" name="color_primary" type="color" class="form-control{% if form.color_primary.errors %}is-invalid{% endif %}"
+                      value="{% if form.errors %}{{ form.color_primary.value }}{% else %}{{ request.user.profile.color_primary }}{% endif %}">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="id_color_secondary">Color secundario del Sistema</label>
+                      <input id="id_color_secondary" maxlength="7" name="color_secondary" type="color" class="form-control{% if form.color_secondary.errors %}is-invalid{% endif %}"
+                      value="{% if form.errors %}{{ form.color_secondary.value }}{% else %}{{ request.user.profile.color_secondary }}{% endif %}">
                     </div>
                   </div>
                 </div>
@@ -189,6 +197,7 @@
                 </div>  
               </div>
               
+
               <!-- <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
