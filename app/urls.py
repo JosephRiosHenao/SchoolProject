@@ -26,6 +26,7 @@ urlpatterns = [
     path('social/', include(('social.urls', 'social'), namespace='social')),
     path('inventory/', include(('inventory.urls', 'inventory'), namespace='inventory')),
     path('cmp/', include(('cmp.urls', 'cmp'), namespace='cmp' )),
+    path('todo/', include(('todo.urls', 'todo'), namespace='todo')),
     path('admin/', admin.site.urls),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

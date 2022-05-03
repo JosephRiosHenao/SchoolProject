@@ -49,6 +49,7 @@ MY_APPS = [
     'inventory',
     'social',
     'cmp',
+    'todo',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + MY_APPS

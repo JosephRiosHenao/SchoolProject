@@ -1,0 +1,51 @@
+ {% extends 'base.html' %} {% block title %}Tareas{% endblock title %} {% block content %}
+<div class="container">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Listado de Tareas</h6>
+
+        </div>
+        <div class="card-body">
+
+            <div class="d-flex w-100 h-100">
+                {% for task in tasks %}
+                <div class="card text-center" style="height:250px; width:250px">
+                    <div class="card-header">
+                        <h5 class="card-title">Special title treatment</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="card text-center" style="height:250px; width:250px; border-radius: 2rem; overflow: hidden;">
+                    <div class="card-body bg-gradient-primary">
+                        <div class="d-flex w-100 h-100 justify-content-center align-items-center" style="flex-direction: column;">
+                            <p><span class="fa fa-plus text-white" style="font-size: 5rem; "></span></p>
+                            <a onclick="return openModal('{% url 'todo:create' %}')" href="#" role="button" class="btn btn-light" style="border-radius: 2rem; color: var(--primary-color); font-weight: bolder;">AGREGAR</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %} {% block js %}
+<script>
+    $(document).ready(function() {
+        $('#brandTable').DataTable({
+            "responsive ": true,
+            "language ": {
+                "url ": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json "
+            },
+        });
+
+    });
+</script>
+{% endblock js %}
