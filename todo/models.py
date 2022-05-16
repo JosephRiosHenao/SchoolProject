@@ -20,6 +20,7 @@ class Task(MetaInfoBase):
     
     def save(self):
         self.name = self.name.upper()
+        super(Task, self).save()
         
     
     def __str__(self):

@@ -5,16 +5,16 @@
             <h6 class="m-0 font-weight-bold text-primary">Listado de Tareas</h6>
 
         </div>
-        <div class="card-body">
+        <div class="card-body text-center w-100">
 
-            <div class="d-flex w-100 h-100">
+            <div class="d-flex w-100 h-100 justify-content-center align-items-center">
                 {% for task in tasks %}
-                <div class="card text-center" style="height:250px; width:250px">
+                <div class="card text-center mx-4" style="height:250px; width:250px">
                     <div class="card-header">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title">{{task.name}}</h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text">{{task.description}}</p>
                     </div>
                     <div class="card-footer text-muted">
                         <a href="#" class="btn btn-primary">Go somewhere</a>
