@@ -10,4 +10,5 @@ urlpatterns = [
     path('register', Register.as_view(), name='register'),
     path('settings', ProfileEdit.as_view(), name='settings'),
     path('<str:username>', ProfileView.as_view(), name='profiles'), # No terminado view ni template logic
+    path('activate-user/<uidb64>/<token>', activate_user, name='activate'),
 ]

@@ -18,7 +18,6 @@ class RegisterForm(forms.Form):
         model = Profile
         fields = ['username','first_name','last_name','password','password_again','email']
     
-    
     def clean_username(self):
         username = self.cleaned_data['username']
         if User.objects.filter(username=username).exists():
@@ -39,6 +38,7 @@ class RegisterForm(forms.Form):
         user = User.objects.create_user(**data)
         profile = Profile(user=user)
         profile.save()
+        return profile
         
 # class ProfileForm(forms.Form):
 #     color_primary = forms.CharField(label='Color primario', max_length=7,

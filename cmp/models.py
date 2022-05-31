@@ -10,6 +10,9 @@ class Provider(MetaInfoBase):
     contact = models.CharField(max_length=100)
     telphone = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
+    
+    def __str__(self):
+        return '{} - {}'.format(self.description, self.contact)
 
 
 class BuyHead(MetaInfoBase):

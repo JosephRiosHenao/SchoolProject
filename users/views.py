@@ -12,7 +12,32 @@ from social.models import Post
 
 from users.models import Profile
 
+from django.contrib.sites.shortcuts import get_current_site
+
+from django.template.loader import render_to_string
+
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+
+from django.utils.encoding import *
+
+from django.core.mail import EmailMessage
+
+from django.conf import settings
+
 from .forms import *
+
+from .utils import *
+
+import threading
+
+
+class EmailThread(threading.Thread):
+    def __init__(self, email):
+        self.email = email
+        threading.Thread.__init__(self)
+
+    def run(self):
+        self.email.send()
 
 # Create your views here.
 class Register(FormView):
@@ -26,8 +51,35 @@ class Register(FormView):
         return super().dispatch(*args, **kwargs)
         
     def form_valid(self, form):
-        form.save()
+        user = form.save()
+        send_verify_email(user, self.request)
         return super().form_valid(form) 
+    
+def send_verify_email(user, request):
+    current_site = get_current_site(request)
+    subject = 'Verificación de correo electrónico'
+    body = render_to_string('users/verify_email.html', {
+        'user': user,
+        'domain': current_site,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': generate_token.make_token(user),
+        })
+    email = EmailMessage(subject, body, from_email=settings.EMAIL_NAME, to=[user.user.email])
+    
+    EmailThread(email).start()
+    
+def activate_user(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        print(uid)
+        user = Profile.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and generate_token.check_token(user, token):
+        user.is_verify = True
+        user.save()
+        return redirect('home')  
+    return render(request, 'users/activate_error_user.html', {})
     
 class ProfileView(LoginRequiredMixin, DetailView):
 

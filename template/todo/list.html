@@ -7,17 +7,26 @@
         </div>
         <div class="card-body text-center w-100">
 
-            <div class="d-flex w-100 h-100 justify-content-center align-items-center">
+            <div class="d-flex w-100 h-100 justify-content-center align-items-center" style="flex-wrap: wrap;">
                 {% for task in tasks %}
-                <div class="card text-center mx-4" style="height:250px; width:250px">
-                    <div class="card-header">
+                <div class="card text-center m-4 {% if task.priority == 'low' %}
+                  bg-success text-white
+                    {% elif task.priority == 'medium' %}
+                    bg-warning text-white
+                        {% elif task.priority == 'high' %}
+                        bg-danger text-white
+                {% endif %} " style="height:250px; width:250px">
+                    <div class="card-header" style="color:black !important;">
                         <h5 class="card-title">{{task.name}}</h5>
+                        <p class="text-muted text-center" style="font-size: small; margin: 0;">{{task.date_finish}}</p>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">{{task.description}}</p>
+
+                        <p class="card-text">
+                            {{task.description}}</p>
                     </div>
                     <div class="card-footer text-muted">
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="{% url 'todo:delete' task.pk %}" class="btn btn-primary">Eliminar tarea</a>
                     </div>
                 </div>
                 {% endfor %}

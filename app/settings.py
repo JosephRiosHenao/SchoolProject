@@ -12,9 +12,15 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+EMAIL_SETTINGS_FILE = os.path.join(BASE_DIR, 'email_conf.json')
+with open(EMAIL_SETTINGS_FILE) as f:
+    email_conf = json.load(f)
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -132,6 +138,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+EMAIL_NAME = email_conf['EMAIL_NAME']
+EMAIL_USE_TLS = email_conf['EMAIL_USE_TLS']
+EMAIL_USE_SSL = email_conf['EMAIL_USE_SSL']
+EMAIL_HOST = email_conf['EMAIL_HOST']
+EMAIL_HOST_USER = email_conf['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = email_conf['EMAIL_HOST_PASSWORD']
+EMAIL_PORT = email_conf['EMAIL_PORT']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

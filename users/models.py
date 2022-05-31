@@ -28,6 +28,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=15 , choices=GENDERS, blank=True, default='No binario')
     color_primary = models.CharField(default='#3cbff0', verbose_name="Color primario sistema*", max_length=7)
     color_secondary = models.CharField(default='#4d4d4d', verbose_name="Color secundario sistema*", max_length=7)
+    is_verify = models.BooleanField(default=False)
     
 
     def __str__(self):

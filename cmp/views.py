@@ -5,6 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 from django.http import HttpResponse
 
+from django.db.models import Sum
+
 from inventory.models import *
 from .models import *
 from .forms import *
@@ -61,7 +63,7 @@ def buy(request, id_buy=None):
     form_buy = {}
     context = {}
     if request.method == "GET":
-        form_buy = BuyForm()
+        form_buy = BuyForm(user=request.user)
         obj = BuyHead.objects.filter(pk=id_buy).first()
         
         if obj:
@@ -79,7 +81,7 @@ def buy(request, id_buy=None):
                 "total": obj.total,
             }
             
-            form_buy = BuyForm(e)
+            form_buy = BuyForm(e, user=request.user)
         else: details = None
         
         context = {
@@ -89,5 +91,67 @@ def buy(request, id_buy=None):
             "form_buy": form_buy,
         }
         
+        if request.method=="POST":
+            date_buy = request.POST.get('date_buy')
+            observation = request.POST.get('observation')
+            no_fact = request.POST.get('no_fact')
+            date_fact = request.POST.get('date_fact')
+            provider = request.POST.get('provider')
+            sub_total = 0
+            descuento = 0
+            total = 0
+            
+            if not id_buy:
+                prov = Provider.objects.get(pk=provider)
+                head = BuyHead(
+                    date_buy = date_buy,
+                    observation = observation,
+                    no_fact = no_fact,
+                    date_fact = date_fact,
+                    provider = prov,
+                    user_created = request.user,
+                    user_modified = request.user,
+                )
+                if head:
+                    head.save()
+                    id_buy = head.id
+            else:
+                head = BuyHead.objects.get(pk=id_buy)
+                if head:
+                    head.date_buy = date_buy
+                    head.observation = observation
+                    head.no_fact = no_fact
+                    head.date_fact = date_fact
+                    head.user_modified = request.user
+                    head.save()
+            if not id_buy:
+                return redirect('cmp:buy_list')
+            
+            product = request.POST.get('id_id_product')
+            stock = request.POST.get('id_stock_details')
+            price = request.POST.get('id_price_details')
+            sub_total_details = request.POST.get('id_sub_total_details')
+            offert_details = request.POST.get('id_offert_details')
+            total_details = request.POST.get('id_total_details')
+            
+            prod = Product.objects.get(pk=product)
+            
+            det = BuyData(
+                buy = head,
+                product = prod,
+                stock = stock,
+                price = price,
+                sub_total = sub_total_details,
+                offert = offert_details,
+                total = total_details,
+                sell = 0,
+                user_created = request.user,
+                user_modified = request.user,
+            )
+            
+            if det:
+                det.save()
+                sub_total = BuyData.objects.filter(buy=id_buy).aggregate(Sum('sub_total'))
+                head.sub_total = sub_total['sub_total__sum']        
         return render(request, template_name, context)
     

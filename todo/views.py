@@ -35,9 +35,9 @@ class UpdateTodo(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.user_modified = self.request.user
         return super().form_valid(form)
-    
+
+
 def taskToggle(request, pk):
     task = Task.objects.get(pk=pk)
-    task.state = not task.state
-    task.save()
+    task.delete()
     return redirect('todo:list')

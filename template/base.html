@@ -31,6 +31,8 @@
 
     <link href=" {% static 'app.css' %}" rel="stylesheet"> {% block css %}{% endblock css %}
 
+    {% block head %}
+    {% endblock head %}
 
 </head>
 
@@ -174,7 +176,15 @@
 
                     </nav>
                     <!-- End of Topbar -->
-                    {% endblock topbar %} {% block content %}
+                    {% endblock topbar %} 
+                    
+                    {% if not request.user.profile.is_verify and not 'login' in request.path %}
+                    {% if not 'register' in request.path %}
+                        <div class="row alert alert-danger text-center mx-4">Correo no verificado, revisa la bandeja de entrada de {{request.user.email}}</div>
+                    {% endif %}
+                    {% endif %}
+                        
+                    {% block content %}
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
