@@ -51,5 +51,5 @@ class ProductForm(forms.ModelForm):
         fields = ['code','code_bar','description',
                   'price','stock','subcategory',
                   'brand','unit_meter','state']
-        labels = {'code':"Codigo",'code_bar':"Codigo de Barras",'description':"Descripcion",'price':"Precio",'stock':"Stock",'sub_category':"SubCategoria",'brand':"Marca",'unit_meter':"Unidad de Medida",'state':"Estado"}        
+        labels = {'code':"Codigo",'code_bar':"Codigo de Barras",'description':"Descripcion",'price':"Precio",'stock':"Stock",'subcategory':"SubCategoria",'brand':"Marca",'unit_meter':"Unidad de Medida",'state':"Estado"}        
         # last_buy, user_created, user_modified,

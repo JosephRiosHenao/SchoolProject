@@ -91,7 +91,7 @@
                 <div class="card-body">
                   <div class="row">
                       <div class="col-sm-2">
-                          <label for="id_phone" class="mb-0" style="line-height: 38px;">Telefono</label>
+                          <label for="id_phone" class="mb-0" style="line-height: 38px;">Teléfono</label>
                       </div>
                       <div class="col-sm-4 text-secondary">
                           <input type="text" id="id_phone" name="phone" maxlength="20"
@@ -99,7 +99,7 @@
                           value="{% if form.errors %}{{ form.phone.value }}{% else %}{{ request.user.profile.phone }}{% endif %}">
                       </div>
                       <div class="col-sm-2">
-                        <label for="id_username" class="mb-0" style="line-height: 38px;">Genero</label>
+                        <label for="id_username" class="mb-0" style="line-height: 38px;">Género</label>
                       </div>
                       <div class="col-sm-4 text-secondary">
                            <!-- <value="{% if form.errors %}{{ form.username.value }}{% else %}{{ request.user.profile.location }}{% endif %}"> -->
@@ -114,7 +114,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-2">
-                      <label for="id_bio" class="mb-0" style="line-height: 38px;">Biografia</label>
+                      <label for="id_bio" class="mb-0" style="line-height: 38px;">Biografía</label>
                       </div>
                       <div class="col-sm-10 text-secondary">
                           <textarea name="bio" id="id_bio" cols="22" rows="3" maxlength="500" 
@@ -125,7 +125,7 @@
                   <hr>
                   <div class="row">
                       <div class="col-sm-2">
-                        <label for="id_organization" class="mb-0" style="line-height: 38px;">Organizacion</label>
+                        <label for="id_organization" class="mb-0" style="line-height: 38px;">Organización</label>
                       </div>
                       <div class="col-sm-4 text-secondary">
                         <input type="text" id="id_organization" name="organization"
@@ -133,7 +133,7 @@
                         value="{% if form.errors %}{{ form.organization.value }}{% else %}{{ request.user.profile.organization }}{% endif %}">
                       </div>
                       <div class="col-sm-2">
-                        <label for="id_location" class="mb-0" style="line-height: 38px;">Localizacion</label>
+                        <label for="id_location" class="mb-0" style="line-height: 38px;">Localización</label>
                       </div>
                       <div class="col-sm-4 text-secondary">
                           <input type="text" id="id_location"  name="location"
@@ -159,7 +159,7 @@
 
               <div class="card shadow mb-3">
                 <a href="#config-pro" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="config-pro">
-                    <h6 class="m-0 font-weight-bold text-danger text-muted">Configuracion Avanzada (Contacta a un administrador)</h6>
+                    <h6 class="m-0 font-weight-bold text-danger text-muted">Configuración Avanzada (Contacta a un administrador)</h6>
                 </a>
                 <div class="collapse hide" id="config-pro" >          
                   <div class="card-body">
@@ -192,7 +192,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-sm-3">
-                            <label for="id_username" class="mb-0" style="line-height: 38px;">Correo electronico</label>
+                            <label for="id_username" class="mb-0" style="line-height: 38px;">Correo electrónico</label>
                         </div>
                         <div class="col-sm-9 text-secondary"> 
                             <input type="text" id="id_username" disabled
