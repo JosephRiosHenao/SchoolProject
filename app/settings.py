@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 import json
+import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +34,9 @@ SECRET_KEY = 'django-insecure-d$$__%z#fqu1=x8gp^6w^(6k$--*7wn4ow$d@jdr5$-9btw+i)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*'
+    ]
 
 
 # Application definition
@@ -149,13 +153,6 @@ EMAIL_PORT = email_conf['EMAIL_PORT']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-STATIC_URL = 'staticfiles/'
-
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -175,3 +172,16 @@ STATICFILES_FINDERS = [
 ]
 
 
+django_heroku.settings(locals())
+# Update database configuration with $DATABASE_URL.
+import dj_database_url  
+db_from_env = dj_database_url.config(conn_max_age=500)  
+DATABASES['default'].update(db_from_env)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
+STATIC_URL = '/static/'
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (  
+    os.path.join(BASE_DIR, 'static'),
+)
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
