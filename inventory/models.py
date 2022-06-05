@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Category(MetaInfoBase):
-    description = models.CharField(max_length=100, unique=True)
+    description = models.CharField(max_length=100, unique=True, default='')
     
     def __str__(self): return self.description
 
