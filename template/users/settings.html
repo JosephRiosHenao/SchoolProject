@@ -17,7 +17,7 @@
                     <div class="user-thumb user-thumb--edit">
                       <div class="custom-file">
                         <input class="custom-file__input " id="id_picture" accept="image/*" type="file">
-                        <label class="custom-file__label bg-success " for="photo">
+                        <label class="custom-file__label bg-success " for="id_picture">
                           <img alt="Imagen perfil" width="150" style="width: 150px; height: 150px; object-fit: cover;" class="thumb--lg rounded-circle" src="{% if 'default' in request.user.profile.picture.url %}https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.webp
                           {% else %}{{ request.user.profile.picture.url }}
                           {% endif %}">
