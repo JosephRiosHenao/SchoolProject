@@ -12,10 +12,14 @@
 
     <title>{% block title %}{% endblock title %} | SOCIAL SHOP</title>
 
+    
+    {% if not 'register' in request.path %}
     <script>
         document.documentElement.style.setProperty('--primary-color', '{{ request.user.profile.color_primary }}');
         document.documentElement.style.setProperty('--secondary-color', '{{ request.user.profile.color_secondary }}');
     </script>
+    {% endif %}
+        
 
     <!-- Custom fonts for this template-->
     <link href=" {% static 'base/vendor/fontawesome-free/css/all.min.css' %} " rel="stylesheet" type="text/css">
