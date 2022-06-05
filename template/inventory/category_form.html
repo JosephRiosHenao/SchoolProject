@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{% if obj %}Modificar{% else %}Crear{% endif %} Categoria{% endblock title %}
+{% block title %}{% if obj %}Modificar{% else %}Crear{% endif %} Categoría{% endblock title %}
 
 {% block content %}
 <form method="POST" class="form-inline">
@@ -11,12 +11,12 @@
                 <div class="row no-gutters align-items-center ">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold {% if obj %}text-warning{% else %}text-success{% endif %} text-uppercase mb-1">
-                            {% if obj %}Actualizar{% else %}Crear{% endif %} Categoria</div>
+                            {% if obj %}Actualizar{% else %}Crear{% endif %} Categoría</div>
                         <div class="h5 font-weight-bold text-gray-800">
                             <div class="row mb-3">
                                 <div class="col-9">
                                     <div class="form-group">
-                                        <label for="id_description">Descripcion</label>
+                                        <label for="id_description">Descripción</label>
                                         <input type="text" class="form-control w-100" id="id_description" name="description" {% if obj %}value="{{form.description.value}}"{% endif %}">
                                     </div>
                                 </div>

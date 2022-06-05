@@ -5,7 +5,10 @@
 
         <div class="card-header media pt-3 pl-3 pb-3">
             <a href="{% url 'users:profiles' post.profile.user.username %}">
-                <img class="mr-3 rounded-circle" height="50" width="50" src="{{ post.profile.picture.url }}" alt="{{ post.user.get_full_name }}" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.432); object-fit: cover;">
+                <img class="mr-3 rounded-circle" height="50" width="50" src="
+                {% if 'default' in post.profile.picture.url %}https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.webp
+                {% else %}{{ post.profile.picture.url }}
+                {% endif %}" alt="{{ post.user.get_full_name }}" style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.432); object-fit: cover;">
             </a>
             <div class="media-body">
                 <div class="col">

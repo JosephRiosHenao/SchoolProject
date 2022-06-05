@@ -69,20 +69,20 @@
                         <span>Dashboard</span></a>
                 </li>
                 <div class="sidebar-heading">
-                    Opciones de menu
+                    Opciones de menú
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-cog"></i>
-                        <span>Catalogos</span>
+                        <span>Catálogos</span>
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Catalogos de inventario:</h6>
-                            <a class="collapse-item" href="{% url 'inventory:category_list' %} ">Categorias</a>
-                            <a class="collapse-item" href="{% url 'inventory:subcategory_list' %} ">Sub Categorias</a>
+                            <h6 class="collapse-header">Catálogos de inventarío</h6>
+                            <a class="collapse-item" href="{% url 'inventory:category_list' %} ">Categorías</a>
+                            <a class="collapse-item" href="{% url 'inventory:subcategory_list' %} ">SubCategorías</a>
                             <a class="collapse-item" href="{% url 'inventory:brand_list' %} ">Marcas</a>
                             <a class="collapse-item" href="{% url 'inventory:unitmeter_list' %} ">Unidad Medida</a>
                             <a class="collapse-item" href="{% url 'inventory:product_list' %} ">Productos</a>
@@ -95,7 +95,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'cmp:buy_list' %}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Compras</span></a>
+                        <span>Ventas</span></a>
                 </li>
                 <hr class="sidebar-divider my-0">
                 <li class="nav-item">
@@ -141,7 +141,7 @@
                         <ul class="navbar-nav ml-auto">
 
                             <li class="nav-item my-auto">
-                                <a onclick="return openModal('{% url 'social:create' %}')" href="#" class="btn btn-primary ">PUBLICAR!</a>
+                                <a onclick="return openModal('{% url 'social:create' %}')" href="#" class="btn btn-primary ">PUBLICAR</a>
                             </li>
 
                             <div class="topbar-divider d-none d-sm-block"></div>
