@@ -35,7 +35,8 @@ SECRET_KEY = 'django-insecure-d$$__%z#fqu1=x8gp^6w^(6k$--*7wn4ow$d@jdr5$-9btw+i)
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '*'
+    '*',
+    'social-shop-project.herokuapp.com',
     ]
 
 
