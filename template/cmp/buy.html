@@ -39,7 +39,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="id_description">Descripción:</label>
-                                                    {{form_buy.obsercation}}
+                                                    {{form_buy.observation}}
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -176,7 +176,6 @@
                                                 <td>{{ item.offert }}</td>
                                                 <td>{{ item.total }}</td>
                                                 <td>
-                                                    <!-- <button class="btn btn-danger btn-circle" onclick="return abrir_modal('{% url 'cmp:buy_del' buy.pk item.id %}')"><i class="fas fa-trash-alt"></i></button> -->
                                                 </td>
                                                 </tr>
                                                 {% endfor %}
@@ -235,6 +234,7 @@
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
             }
+            
         });
 
         $('#id_stock_details,#id_price_details,#id_offert_details').change(function(){
@@ -316,13 +316,12 @@
         desc = desc==="" ? 0 : +desc;
         desc = desc<0 ? 0 : desc;
 
-        desc = desc>100 ? 0 : desc;
-        desc = desc/100;
-        desc = desc*prec*cant;
+        desc = desc>(prec*cant) ? 0 : desc;
 
         stotal = cant * prec;
         total  = stotal - desc;
 
+        $('#id_offert_details').val(desc);
         $('#id_stock_details').val(cant);
         $('#id_price_details').val(prec);
         $('#id_sub_total_details').val(stotal);

@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{% block title %}{% endblock title %} | JESSCOUNT</title>
+    <title>{% block title %}{% endblock title %} | SOCIAL SHOP</title>
 
     <script>
         document.documentElement.style.setProperty('--primary-color', '{{ request.user.profile.color_primary }}');
@@ -21,13 +21,16 @@
     <link href=" {% static 'base/vendor/fontawesome-free/css/all.min.css' %} " rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Responsive Datatables  -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.css">
 
     <!-- Custom styles for this template-->
     <link href=" {% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap4.min.css"/>
+
+    <!-- DROPZONE -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/basic.min.css" integrity="sha512-MeagJSJBgWB9n+Sggsr/vKMRFJWs+OUphiDV7TJiYu+TNQD9RtVJaPDYP8hA/PAjwRnkdvU+NsTncYTKlltgiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link href=" {% static 'app.css' %}" rel="stylesheet"> {% block css %}{% endblock css %}
 
@@ -79,18 +82,6 @@
                             <a class="collapse-item" href="{% url 'inventory:brand_list' %} ">Marcas</a>
                             <a class="collapse-item" href="{% url 'inventory:unitmeter_list' %} ">Unidad Medida</a>
                             <a class="collapse-item" href="{% url 'inventory:product_list' %} ">Productos</a>
-                        </div>
-                    </div>
-                </li>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                        <i class="fas fa-fw fa-cog"></i>
-                        <span>CMP</span>
-                    </a>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Catalogos de CMP:</h6>
                             <a class="collapse-item" href="{% url 'cmp:provider_list' %} ">Proveedores</a>
                         </div>
                     </div>
@@ -155,7 +146,10 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ request.user.username }}</span>
-                                    <img class="img-profile rounded-circle" src="{{ request.user.profile.picture.url }}" style="object-fit: cover;">
+                                    <img class="img-profile rounded-circle" src="
+                                    {% if 'default' in request.user.profile.picture.url %}https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.webp
+                                    {% else %}{{ request.user.profile.picture.url }}
+                                    {% endif %}" style="object-fit: cover;">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -257,12 +251,26 @@
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
         <!-- Datatables -->
-        <script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js' %}"></script>
-        <script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap4.js"></script>
+        
+        <!-- DROPZONE -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/dropzone-min.js" integrity="sha512-FFyHlfr2vLvm0wwfHTNluDFFhHaorucvwbpr0sZYmxciUj3NoW1lYpveAQcx2B+MnbXbSrRasqp43ldP9BKJcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <!-- Me -->
-        {% block js %}{% endblock js %} {% block control_modal %}
+        {% block js %}{% endblock js %} 
+
+        {% block control_modal %}
         <script>
             function openModal(url) {
                 console.log(url)
@@ -278,6 +286,40 @@
             };
         </script>
         {% endblock control_modal %}
+
+        <script>
+            $(document).ready(function() {
+                $('.table').DataTable({
+                    "responsive": true,
+                    buttons:[
+                        {
+                            extend: "excelHtml5",
+                            text: "<i class='fas fa-file-excel'></i>",
+                            titleAttr: 'Exportar a Excel',
+                            className: 'btn btn-success'
+                        },
+                        {
+                            extend: "pdfHtml5",
+                            text: "<i class='fas fa-file-pdf'></i>",
+                            titleAttr: 'Exportar a PDF!',
+                            className: 'btn btn-danger'
+                        },
+                        {
+                            extend: "print",
+                            text: "<i class='fas fa-print'></i>",
+                            titleAttr: 'Imprimir',
+                            className: 'btn btn-primary'
+                        }
+                        
+                ],
+                "dom": 'Bfrtilp',
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                    },
+                });
+    
+            });
+        </script>
 </body>
 
 </html>

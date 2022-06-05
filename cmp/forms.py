@@ -16,9 +16,9 @@ class BuyForm(forms.ModelForm):
         model = BuyHead
         fields = ["provider","date_buy","observation","no_fact","date_fact","sub_total","offert","total"]
         
-    def __init__(self, user=None, *args, **kwargs):
-        super(BuyForm, self).__init__(*args, **kwargs)
-        self.fields['provider'].queryset = Provider.objects.filter(user_created=user)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['provider'].queryset = Provider.objects.all()
         for field in iter(self.fields):
             self.fields[field].widget.attrs.update({'class': 'form-control'})
         self.fields["date_buy"].widget.attrs["readonly"] = True

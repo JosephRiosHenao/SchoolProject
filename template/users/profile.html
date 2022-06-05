@@ -5,9 +5,11 @@
 <div class="container mb-5" style="">
     <div class="row">
 
-        <div class="col-sm-4 d-flex justify-content-center">
+        <div class="col-sm-4 d-flex justify-content-center align-items-center" style="flex-direction: column;">
             <img
-                src="{{ user.profile.picture.url }}"
+                src="{% if 'default' in request.user.profile.picture.url %}https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.webp
+                {% else %}{{ request.user.profile.picture.url }}
+                {% endif %}"
                 style="width: 150px; height: 150px; object-fit: cover;"
                 alt="@{{ user.username}}"
                 class="rounded-circle shadow"
@@ -15,7 +17,7 @@
             />
         </div>
 
-        <div class="col-sm-8">
+        <div class="col-sm-8 d-flex justify-content-center align-items-center" style="flex-direction: column;">
             <h2 style="font-weight: 100;">
                 {{ user.username }}
                 {% if user == request.user %}
@@ -23,34 +25,13 @@
                         href="{% url "users:settings" %}"
                         class="ml-5 btn btn-sm btn-outline-info"
                     >
-                        Edit profile
-                    </a>
-                {% else %}
-                    <a
-                        href=""
-                        class="ml-5 btn btn-sm btn-primary"
-                    >
-                        Follow
+                        EDITAR PERFIL
                     </a>
                 {% endif %}
             </h2>
-
-            <div class="row mt-2" style="font-size: 1.2em">
-                <div class="col-sm-4">
-                    <b>{{ user.profile.posts_count }}785</b> posts
-                </div>
-                <div class="col-sm-4">
-                    <b>{{ user.profile.followers }}1,401</b> followers
-                </div>
-                <div class="col-sm-4">
-                    <b>{{ user.profile.following }}491</b> following
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-sm-12">
-                    <p>{{ user.profile.biography }}</p>
-                </div>
-            </div>
+            <p class="text-center">
+                {{ user.profile.bio }}
+            </p>
         </div>
     </div>
 </div>

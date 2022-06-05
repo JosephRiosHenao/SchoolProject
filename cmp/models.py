@@ -17,7 +17,7 @@ class Provider(MetaInfoBase):
 
 class BuyHead(MetaInfoBase):
     date_buy = models.DateField(null=True, blank=True)
-    observation = models.TextField(null=True, blank=True)
+    observation = models.TextField(max_length=200, null=True, blank=True)
     no_fact = models.CharField(max_length=100)
     date_fact = models.DateField()
     sub_total = models.FloatField(default=0)
@@ -26,10 +26,13 @@ class BuyHead(MetaInfoBase):
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.observation
+        return '{}'.format(self.observation)
     
     def save(self):
         self.observation = self.observation.upper()
+        if self.sub_total == None  or self.offert == None:
+            self.sub_total = 0
+            self.offert = 0
         self.total = self.sub_total - self.offert
         super(BuyHead, self).save()
 
@@ -47,6 +50,6 @@ class BuyData(MetaInfoBase):
         return self.product
     
     def save(self):
-        self.sub_total = float(float(int(self.stock)) * self.price)
+        self.sub_total = float(float(int(self.stock)) * float(self.price))
         self.total = self.sub_total - float(self.offert)
         super(BuyData, self).save()

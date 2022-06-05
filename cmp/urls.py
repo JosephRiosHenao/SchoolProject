@@ -13,5 +13,6 @@ urlpatterns = [
     # BUY
     path('buy/list/', BuyView.as_view(), name='buy_list'),
     path('buy/create/', buy, name='buy_create'),
+    path("buy/update/<int:id_buy>/", buy, name="buy_update"),
 
 ]

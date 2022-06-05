@@ -53,8 +53,7 @@
                                 <td>{{item.total}}</td>
                                 <td style="text-align: center;">{% if item.state %}<span class="badge badge-success p-2">Activo</span>{% else %}<span class="badge badge-danger p-2">Desactivado</span>{% endif %}</td>
                                 <td>
-                                    <a onclick="return openModal('{% url 'cmp:buy_update' item.id %}')" href="#" role="button" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>
-                                    <a href="{% url 'cmp:buy_toggle' item.id %}" role="button" class="btn {% if item.state %}btn-danger{% else %}btn-success{% endif %} btn-circle">{% if item.state %}<i class="far fa-thumbs-down"></i>{% else %}<i class="far fa-thumbs-up"></i>{% endif %}</a>
+                                    <a href="{% url 'cmp:buy_update' item.id %}" role="button" class="btn btn-warning btn-circle"><i class="far fa-edit"></i></a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -68,19 +67,4 @@
 </div>
     
 {% endblock content %}
-    
-
-{% block js %}
-    <script>
-        $(document).ready(function() {
-            $('#providerTable').DataTable({
-                "responsive": true,
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-                },
-            });
-
-        });
-    </script>
-{% endblock js %}
     

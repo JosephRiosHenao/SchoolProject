@@ -1,0 +1,9 @@
+{
+    "EMAIL_NAME": "Social Shop",
+    "EMAIL_HOST": "smtp.gmail.com",
+    "EMAIL_HOST_PASSWORD": "nikolas2672",
+    "EMAIL_HOST_USER": "socialshop2672@gmail.com",
+    "EMAIL_PORT": 587,
+    "EMAIL_USE_TLS": true,
+    "EMAIL_USE_SSL": false
+}
