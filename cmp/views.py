@@ -11,6 +11,8 @@ from inventory.models import *
 from .models import *
 from .forms import *
 
+from django.db.models import Q
+
 # Create your views here.
 
 class ProviderView(LoginRequiredMixin, ListView):
@@ -18,7 +20,7 @@ class ProviderView(LoginRequiredMixin, ListView):
     context_object_name = 'obj'
     template_name = 'cmp/provider_list.html'
     
-    def get_queryset(self): return Provider.objects.filter(user_created = self.request.user)
+    def get_queryset(self): return Provider.objects.all()
     
 class ProviderCreateView(LoginRequiredMixin, CreateView):
     model = Provider
@@ -54,7 +56,7 @@ class BuyView(LoginRequiredMixin, ListView):
     context_object_name = 'obj'
     template_name = 'cmp/buy_list.html'
     
-    def get_queryset(self): return BuyHead.objects.filter(user_created = self.request.user)
+    def get_queryset(self): return BuyHead.objects.all()
     
 
 def buy(request, id_buy=None):
@@ -64,10 +66,10 @@ def buy(request, id_buy=None):
     context = {}
     if request.method == "GET":
         form_buy = BuyForm()
-        obj = BuyHead.objects.filter(pk=id_buy).first()
+        obj = BuyHead.objects.filter(Q(pk=id_buy) & Q(user_created = request.user)).first()
         
         if obj:
-            details = BuyData.objects.filter(buy=obj)
+            details = BuyData.objects.filter(Q(buy=obj) & Q(user_created = request.user))
             date_buy = datetime.date.isoformat(obj.date_buy)
             date_fact = datetime.date.isoformat(obj.date_fact)
             e = {
@@ -152,8 +154,8 @@ def buy(request, id_buy=None):
         
         if det:
             det.save()
-            sub_total = BuyData.objects.filter(buy=id_buy).aggregate(Sum('sub_total'))
-            descuento = BuyData.objects.filter(buy=id_buy).aggregate(Sum('offert'))
+            sub_total = BuyData.objects.filter(Q(buy=id_buy) & Q(user_created = request.user)).aggregate(Sum('sub_total'))
+            descuento = BuyData.objects.filter(Q(buy=id_buy) & Q(user_created = request.user)).aggregate(Sum('offert'))
             head.offert = descuento['offert__sum']
             head.sub_total = sub_total['sub_total__sum']        
             head.save()
