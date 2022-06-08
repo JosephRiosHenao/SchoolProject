@@ -61,15 +61,15 @@ class BuyView(LoginRequiredMixin, ListView):
 
 def buy(request, id_buy=None):
     template_name = 'cmp/buy.html'
-    products = Product.objects.filter(user_created = request.user)
+    products = Product.objects.all()
     form_buy = {}
     context = {}
     if request.method == "GET":
         form_buy = BuyForm()
-        obj = BuyHead.objects.filter(Q(pk=id_buy) & Q(user_created = request.user)).first()
+        obj = BuyHead.objects.filter(pk=id_buy).first()
         
         if obj:
-            details = BuyData.objects.filter(Q(buy=obj) & Q(user_created = request.user))
+            details = BuyData.objects.filter(buy=obj)
             date_buy = datetime.date.isoformat(obj.date_buy)
             date_fact = datetime.date.isoformat(obj.date_fact)
             e = {
@@ -154,8 +154,8 @@ def buy(request, id_buy=None):
         
         if det:
             det.save()
-            sub_total = BuyData.objects.filter(Q(buy=id_buy) & Q(user_created = request.user)).aggregate(Sum('sub_total'))
-            descuento = BuyData.objects.filter(Q(buy=id_buy) & Q(user_created = request.user)).aggregate(Sum('offert'))
+            sub_total = BuyData.objects.filter(buy=id_buy).aggregate(Sum('sub_total'))
+            descuento = BuyData.objects.filter(buy=id_buy).aggregate(Sum('offert'))
             head.offert = descuento['offert__sum']
             head.sub_total = sub_total['sub_total__sum']        
             head.save()
