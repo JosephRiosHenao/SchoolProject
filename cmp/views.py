@@ -56,7 +56,7 @@ class BuyView(LoginRequiredMixin, ListView):
     context_object_name = 'obj'
     template_name = 'cmp/buy_list.html'
     
-    def get_queryset(self): return BuyHead.objects.all()
+    def get_queryset(self): return BuyHead.objects.filter(user_created = self.request.user)
     
 
 def buy(request, id_buy=None):
